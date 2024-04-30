@@ -1,8 +1,8 @@
 <?php
 
 use Dotenv\Dotenv;
+use TajiMpesa\MpesaOAuth;
 use TajiMpesa\MpesaSTKPush;
-use TajiMpesa\SafaricomOAuth;
 
 it('make a successful stk push', function () {
     $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
@@ -16,7 +16,7 @@ it('make a successful stk push', function () {
 
 
     $headers = [
-        'Authorization' => 'Bearer ' . (new SafaricomOAuth($password, $username))->getAccessToken(),
+        'Authorization' => 'Bearer ' . (new MpesaOAuth($password, $username))->getAccessToken(),
         'Content-Type' => 'application/json'
     ];
 

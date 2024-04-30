@@ -11,19 +11,39 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use TajiMPesa\Exceptions\HTTPException\HTTPException as TajiMPesaHTTPException;
 
-class SafaricomOAuth
+/**
+ * MpesaOAuth class for handling OAuth authentication with Mpesa APIs.
+ *
+ * This class provides methods for obtaining and managing access tokens from
+ * the Mpesa OAuth API. It supports both sandbox and production environments.
+ *
+ * Usage:
+ *  - Create an instance of MpesaOAuth with your Mpesa API credentials.
+ *  - Call getAccessToken() method to retrieve a valid access token for API requests.
+ *
+ * @package TajiMpesa
+ */
+class MpesaOAuth
 {
     private $authorizationHeader;
     private $client;
     private static $instance;
+
+    /**
+     * Constructor method for initializing MpesaOAuth instance.
+     *
+     * @param string $password Mpesa API password.
+     * @param string $username Mpesa API username.
+     * @param string $mode (Optional) API environment mode ('sandbox' or 'production').
+     */
 
     public function __construct($password, $username, $mode = 'sandbox')
     {
         $this->authorizationHeader = self::encodeCredentials($username, $password);
 
         $baseUrl = ($mode == 'sandbox') ?
-            'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials' :
-            'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+            'https://sandbox.Mpesa.co.ke/oauth/v1/generate?grant_type=client_credentials' :
+            'https://api.Mpesa.co.ke/oauth/v1/generate?grant_type=client_credentials';
 
 
         $this->client = new Client([
@@ -35,6 +55,8 @@ class SafaricomOAuth
         ]);
     }
 
+
+
     public static function getInstance($password, $username, $mode = 'sandbox')
     {
         if (self::$instance === null) {
@@ -42,6 +64,17 @@ class SafaricomOAuth
         }
         return self::$instance;
     }
+
+    /**
+     * Get the access token from the Mpesa OAuth API.
+     *
+     * This method retrieves a valid access token from the Mpesa OAuth API.
+     * If a valid access token is already available in the session and not expired, it returns the stored token.
+     * Otherwise, it makes a request to the OAuth API to obtain a new access token.
+     *
+     * @throws GuzzleException If an error occurs while making the HTTP request.
+     * @return string The access token obtained from the OAuth API.
+     */
 
     private function acquireLock($lockName)
     {
@@ -68,7 +101,7 @@ class SafaricomOAuth
         fclose($lockHandle);
     }
     /**
-     * Get the access token from the Safaricom OAuth API
+     * Get the access token from the Mpesa OAuth API
      * @throws GuzzleException
      * 
      */

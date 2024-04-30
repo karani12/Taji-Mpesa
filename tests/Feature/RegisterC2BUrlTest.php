@@ -1,8 +1,8 @@
 <?php
 
 use Dotenv\Dotenv;
+use TajiMpesa\MpesaOAuth;
 use TajiMpesa\RegisterC2BUrl;
-use TajiMpesa\SafaricomOAuth;
 
 
 it('can register c2b url', function () {
@@ -15,7 +15,7 @@ it('can register c2b url', function () {
     $validationUrl = $_ENV['VALIDATION_URL'];
 
     $headers = [
-        'Authorization' => 'Bearer ' . (new SafaricomOAuth($password, $username))->getAccessToken(),
+        'Authorization' => 'Bearer ' . (new MpesaOAuth($password, $username))->getAccessToken(),
         'Content-Type' => 'application/json'
     ];
 
