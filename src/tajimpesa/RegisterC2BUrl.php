@@ -28,7 +28,7 @@ class RegisterC2BUrl
      * @param array $headers HTTP headers for the request.
      * @param string $body JSON-encoded request body.
      */
-    
+
     public function __construct($mode = 'sandbox', $headers, $body)
     {
         $this->client = new Client();
@@ -47,6 +47,7 @@ class RegisterC2BUrl
      *
      * @return string Response body containing the registration status.
      */
+    
     public function registerUrl()
     {
 
