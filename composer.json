@@ -1,0 +1,33 @@
+{
+    "name": "taji/tajimpesa",
+    "description": "A simple PHP library for interacting with Safaricom's M-Pesa API",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["mpesa", "safaricom", "tajimpesa"],
+    "authors": [
+        {
+            "name": "karani",
+            "email": "karanijohn018@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+
+    "require": {
+   
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "TajiMpesa\\": "src/tajimpesa"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require-dev": {
+        "vlucas/phpdotenv": "^5.3",
+        "pestphp/pest": "2.x-dev"
+    }
+}
